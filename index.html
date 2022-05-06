@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Virtual keybord</title>
+    <link href="icon/keyboard.ico" rel ="icon" type="image/x icon">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|Sonsie+One" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="style.css">
+
+    
+  </head>
+
+  <body> 
+      <div class = "keyboard-container">
+      <h1 class="title"> RSS Виртуальная клавиатура</h1>
+      <textarea class="keyboard-input" autofocus></textarea>
+
+        <div class="keyboard">
+            <div class="keyboard-row">
+            <div class="button-key"><button>&lsquo;</button></div> <!-- 14 клавиш в первой строке-->
+            <div class="button-key"><button>1</button></div>
+            <div class="button-key"><button>2</button></div>
+            <div class="button-key"><button>3</button></div>
+            <div class="button-key"><button>4</button></div>
+            <div class="button-key"><button>5</button></div>
+            <div class="button-key"><button>6</button></div>
+            <div class="button-key"><button>7</button></div>
+            <div class="button-key"><button>8</button></div>
+            <div class="button-key"><button>9</button></div>
+            <div class="button-key"><button>0</button></div>
+            <div class="button-key"><button>-</button></div>
+            <div class="button-key"><button>+</button></div>
+            <div class="button-func" id="key-backspace"><button>Backspace</button></div>
+            </div>
+            <div class="keyboard-row">
+                <div class="button-func" id="key-tab"><button>Tab</button></div> <!-- 15 клавиш во второй строке-->
+                <div class="button-key"><button>Q</button></div>
+                <div class="button-key"><button>W</button></div>
+                <div class="button-key"><button>E</button></div>
+                <div class="button-key"><button>R</button></div>
+                <div class="button-key"><button>T</button></div>
+                <div class="button-key"><button>Y</button></div>
+                <div class="button-key"><button>U</button></div>
+                <div class="button-key"><button>I</button></div>
+                <div class="button-key"><button>O</button></div>
+                <div class="button-key"><button>P</button></div>
+                <div class="button-key"><button>[</button></div>
+                <div class="button-key"><button>]</button></div>
+                <div class="button-key"><button>\</button></div>
+                <div class="button-func" id="key-delete"><button>Del</button></div>
+            </div>
+            <div class="keyboard-row">
+                <div class="button-func" id="key-capslock"><button>Capslock</button></div> <!-- 13 клавиш в третьей строке-->
+                <div class="button-key"><button>A</button></div>
+                <div class="button-key"><button>S</button></div>
+                <div class="button-key"><button>D</button></div>
+                <div class="button-key"><button>F</button></div>
+                <div class="button-key"><button>G</button></div>
+                <div class="button-key"><button>H</button></div>
+                <div class="button-key"><button>J</button></div>
+                <div class="button-key"><button>K</button></div>
+                <div class="button-key"><button>L</button></div>
+                <div class="button-key"><button>;</button></div>
+                <div class="button-key"><button>'</button></div>
+                <div class="button-func" id="key-enter"><button>Enter</button></div>
+            </div>
+            <div class="keyboard-row">
+                <div class="button-func" id="key-shift-left"><button>Shift</button></div> <!-- 13 клавиш в четвертой строке-->
+                <div class="button-key"><button>Z</button></div>
+                <div class="button-key"><button>X</button></div>
+                <div class="button-key"><button>C</button></div>
+                <div class="button-key"><button>V</button></div>
+                <div class="button-key"><button>B</button></div>
+                <div class="button-key"><button>N</button></div>
+                <div class="button-key"><button>M</button></div>
+                <div class="button-key"><button>,</button></div>
+                <div class="button-key"><button>.</button></div>
+                <div class="button-key"><button>/</button></div>
+                <div class="button-func" id="key-up"><button>&uarr;</button></div>
+                <div class="button-func" id="key-shift-right"><button>Shift</button></div>
+                
+            </div>
+            <div class="keyboard-row">
+                <div class="button-func id="key-ctrl-left"><button>Ctrl</button></div> <!-- 9 клавиш -->
+                <div class="button-func"><button>Win</button></div>
+                <div class="button-func" id="key-alt-left"><button>Alt</button></div>
+                <div class="button-func" id="key-space"><button> </button></div>
+                <div class="button-func" id="key-alt-right"><button>Alt</button></div>
+                <div class="button-func" id="key-ctrl-right"><button>Ctrl</button></div>
+                <div class="button-func" id="key-left"><button>&larr;</button></div>
+                <div class="button-func" id="key-down"><button>&darr;</button></div>
+                <div class="button-func" id="key-right"><button>&rarr;</button></div>
+                
+            </div>
+        </div>
+
+        <div class="down-text">
+            <h4>Клавиатура создана в операционной системе Windows</h4>
+            <h4>Клавиши переключения языка: левые Shift+Alt</h4>
+        </div>
+
+      </div>
+    
+      <script src="script.js" defer></script>
+   
+</body>
+</html> 
