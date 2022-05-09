@@ -582,9 +582,6 @@ const LEFT = document.getElementById("key-left");
 const RIGHT = document.getElementById("key-right");
 const ARROWS = [UP, DOWN, LEFT, RIGHT];
 let capsOn = false;
-
-
-
 let langSwitch = localStorage;
 
 if (langSwitch["lang"] === 'en') {          //язык при загрузке страницы
@@ -631,6 +628,22 @@ function removeText() { // опишем функцию для нормально
             insertText(a.innerText) 
          })
     });
+
+
+ document.addEventListener("keydown", (event) => { //считывание букв в соответствии с языком
+     let index; 
+    if ((event.code.includes("Key") || event.code.includes("Arrow") || event.code === "Backquote" || event.code === "Comma" || event.code === "Period" || event.code === "Semicolon" || event.code === "Quote")) {
+        event.preventDefault();
+        for (let i = 0; i < virtual_keyboard.keyObj.length; i++) {
+            if (event.code == virtual_keyboard.keyObj[i]['code']) { 
+                index = i;
+                break;
+            }
+        } 
+                insertText([...ALL_BUTTONS][index].getElementsByTagName("button")[0].innerHTML);
+}}) 
+
+
 
     ARROWS.forEach( a => {
         a.addEventListener("click", () => {  //ввод 
@@ -683,6 +696,8 @@ function removeText() { // опишем функцию для нормально
 
    SHIFT.forEach(a => {   //по клику
    a.addEventListener("mousedown", () => { // вешаем слушатель событий на shift 
+
+    if (capsOn === false) {
     if (langSwitch["lang"] === "en") {
         for (let i=0; i < virtual_keyboard.keyObj.length; i ++) {
             ALL_BUTTONS[i].getElementsByTagName("button")[0].innerHTML = virtual_keyboard.keyObj[i]["shifted_en"];
@@ -701,6 +716,36 @@ function removeText() { // опишем функцию для нормально
                     ALL_BUTTONS[i].getElementsByTagName("button")[0].innerHTML = virtual_keyboard.keyObj[i]["ru"];
                 }
             });
+        }} else {  //capsOn true
+
+            if (langSwitch["lang"] === "en") {
+                for (let i=0; i < virtual_keyboard.keyObj.length; i ++) {
+                    ALL_BUTTONS[i].getElementsByTagName("button")[0].innerHTML = virtual_keyboard.keyObj[i]["shifted_en"];
+                }
+                [...LETTER_BUTTON].forEach( a => {
+                    a.getElementsByTagName("button")[0].innerText = a.getElementsByTagName("button")[0].innerText.toLowerCase();})
+
+                document.addEventListener("mouseup", () => {
+                    for (let i=0; i < virtual_keyboard.keyObj.length; i ++) {
+                        ALL_BUTTONS[i].getElementsByTagName("button")[0].innerHTML = virtual_keyboard.keyObj[i]["en"];
+                    };
+                    [...LETTER_BUTTON].forEach( a => {
+                        a.getElementsByTagName("button")[0].innerText = a.getElementsByTagName("button")[0].innerText.toUpperCase();})
+                });
+             } else if (langSwitch["lang"] === "ru") {
+                    for (let i=0; i < virtual_keyboard.keyObj.length; i ++) {
+                        ALL_BUTTONS[i].getElementsByTagName("button")[0].innerHTML = virtual_keyboard.keyObj[i]["shifted_ru"];
+                    };
+                    [...LETTER_BUTTON].forEach( a => {
+                        a.getElementsByTagName("button")[0].innerText = a.getElementsByTagName("button")[0].innerText.toLowerCase();})
+                    document.addEventListener("mouseup", () => {
+                        for (let i=0; i < virtual_keyboard.keyObj.length; i++) {
+                            ALL_BUTTONS[i].getElementsByTagName("button")[0].innerHTML = virtual_keyboard.keyObj[i]["ru"];
+                        };
+                        [...LETTER_BUTTON].forEach( a => {
+                            a.getElementsByTagName("button")[0].innerText = a.getElementsByTagName("button")[0].innerText.toUpperCase();})
+                    });
+                }
         }
     });
 })
@@ -708,6 +753,8 @@ function removeText() { // опишем функцию для нормально
  document.addEventListener('keydown', (event) => {  // эмуляция Shift по нажатию
    
     if ((event.code === "ShiftLeft")|| (event.code === "ShiftRight")) {
+
+        if (capsOn === false) {
         if (langSwitch["lang"] === "en") {
     for (let i = 0; i < virtual_keyboard.keyObj.length; i++) {
          ALL_BUTTONS[i].getElementsByTagName("button")[0].innerHTML = virtual_keyboard.keyObj[i]["shifted_en"];
@@ -717,13 +764,29 @@ function removeText() { // опишем функцию для нормально
                 ALL_BUTTONS[i].getElementsByTagName("button")[0].innerHTML = virtual_keyboard.keyObj[i]["shifted_ru"];
                 TEXTAREA.focus();
                }
-        }
-    
+        }} else {
+            if (langSwitch["lang"] === "en") {
+                for (let i = 0; i < virtual_keyboard.keyObj.length; i++) {
+                     ALL_BUTTONS[i].getElementsByTagName("button")[0].innerHTML = virtual_keyboard.keyObj[i]["shifted_en"];
+                     TEXTAREA.focus();}
+                    [...LETTER_BUTTON].forEach( a => {
+                        a.getElementsByTagName("button")[0].innerText = a.getElementsByTagName("button")[0].innerText.toLowerCase();})
+                } else { 
+                        for (let i = 0; i < virtual_keyboard.keyObj.length; i++) {
+                            ALL_BUTTONS[i].getElementsByTagName("button")[0].innerHTML = virtual_keyboard.keyObj[i]["shifted_ru"];
+                            TEXTAREA.focus();
+                           };
+                           [...LETTER_BUTTON].forEach( a => {
+                            a.getElementsByTagName("button")[0].innerText = a.getElementsByTagName("button")[0].innerText.toLowerCase();})
+                    }
+        } 
     };
                  
         document.addEventListener('keyup', (event) => {  // эмуляция отжатия клавиш
             
             if ((event.code === "ShiftLeft")|| (event.code === "ShiftRight")) {
+
+                if (capsOn === false) {
                 if (langSwitch["lang"] === "en") {
                 for (let i = 0; i < virtual_keyboard.keyObj.length; i++) {
                     ALL_BUTTONS[i].getElementsByTagName("button")[0].innerHTML = virtual_keyboard.keyObj[i]["en"];
@@ -732,11 +795,27 @@ function removeText() { // опишем функцию для нормально
                         for (let i = 0; i < virtual_keyboard.keyObj.length; i++) {
                             ALL_BUTTONS[i].getElementsByTagName("button")[0].innerHTML = virtual_keyboard.keyObj[i]["ru"];
                             TEXTAREA.focus();                          }
-                    }};
+                    }} else {
+                        if (langSwitch["lang"] === "en") {
+                            for (let i = 0; i < virtual_keyboard.keyObj.length; i++) {
+                                ALL_BUTTONS[i].getElementsByTagName("button")[0].innerHTML = virtual_keyboard.keyObj[i]["en"];
+                                TEXTAREA.focus();
+                                };
+                                [...LETTER_BUTTON].forEach( a => {
+                                    a.getElementsByTagName("button")[0].innerText = a.getElementsByTagName("button")[0].innerText.toUpperCase();})
+                            } else {
+                                    for (let i = 0; i < virtual_keyboard.keyObj.length; i++) {
+                                        ALL_BUTTONS[i].getElementsByTagName("button")[0].innerHTML = virtual_keyboard.keyObj[i]["ru"];
+                                        TEXTAREA.focus();}
+                                        [...LETTER_BUTTON].forEach( a => {
+                                            a.getElementsByTagName("button")[0].innerText = a.getElementsByTagName("button")[0].innerText.toUpperCase();})
+                                }
+                    }
+                
+                };
         
     })
 })
- 
 
 
    document.getElementById("key-space").addEventListener("click", () => {  //ввод пробел
@@ -764,7 +843,10 @@ function removeText() { // опишем функцию для нормально
 
 
     document.addEventListener('keydown', (event) => {    //смена языка
-        if (event.ctrlKey && event.altKey) {       
+        if (event.ctrlKey && event.altKey) {  
+            capsOn = false;
+            CAPS.classList.remove("button-func-hovered");
+
      
     if (langSwitch["lang"] === 'en') {
         Object.defineProperty(langSwitch, "lang", {value: 'ru'})
@@ -806,19 +888,24 @@ document.addEventListener('keydown', (event) => {  // эмуляция нажа�
              for (let i = 0; i < virtual_keyboard.keyObj.length; i++) {
                   if (virtual_keyboard.keyObj[i]['code'] === event.code) { 
                       ALL_BUTTONS[i].classList.remove("button-actived");
-        }};
-        
-    })
+             }}   
+       })
+    }) 
 
-    })
-
+document.addEventListener('keydown', (event) => {  // эмуляция нажатия Tab
+    if (event.code === "Tab") {
+        event.preventDefault();
+        insertText('\t');
+    } else if (event.altKey) {
+        event.preventDefault();}
+})
 
 }
-
 }
 
 
 const virtual_keyboard = new Keyboard();
 virtual_keyboard.init();
 virtual_keyboard.functional();
+
 
