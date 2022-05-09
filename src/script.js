@@ -702,6 +702,15 @@ class Keyboard {
                 ALL_BUTTONS[i].getElementsByTagName('button')[0].innerHTML = this.keyObj[i].ru;
               }
             });
+          } else if (langSwitch.lang === undefined) {
+            for (let i = 0; i < this.keyObj.length; i += 1) {
+              ALL_BUTTONS[i].getElementsByTagName('button')[0].innerHTML = this.keyObj[i].shifted_en;
+            }
+            document.addEventListener('mouseup', () => {
+              for (let i = 0; i < this.keyObj.length; i += 1) {
+                ALL_BUTTONS[i].getElementsByTagName('button')[0].innerHTML = this.keyObj[i].en;
+              }
+            });
           }
         } else if (capsOn === true) { // capsOn true
           if (langSwitch.lang === 'en') {
@@ -735,6 +744,22 @@ class Keyboard {
                 [...LETTER_BUTTON][index].getElementsByTagName('button')[0].innerText = [...LETTER_BUTTON][index].getElementsByTagName('button')[0].innerText.toUpperCase();
               });
             });
+          } else if (langSwitch.lang === undefined) {
+            for (let i = 0; i < this.keyObj.length; i += 1) {
+              ALL_BUTTONS[i].getElementsByTagName('button')[0].innerHTML = this.keyObj[i].shifted_en;
+            }
+            [...LETTER_BUTTON].forEach((item, index) => {
+              [...LETTER_BUTTON][index].getElementsByTagName('button')[0].innerText = [...LETTER_BUTTON][index].getElementsByTagName('button')[0].innerText.toLowerCase();
+            });
+
+            document.addEventListener('mouseup', () => {
+              for (let i = 0; i < this.keyObj.length; i += 1) {
+                ALL_BUTTONS[i].getElementsByTagName('button')[0].innerHTML = this.keyObj[i].en;
+              }
+              [...LETTER_BUTTON].forEach((item, index) => {
+                [...LETTER_BUTTON][index].getElementsByTagName('button')[0].innerText = [...LETTER_BUTTON][index].getElementsByTagName('button')[0].innerText.toUpperCase();
+              });
+            });
           }
         }
       });
@@ -748,28 +773,43 @@ class Keyboard {
               ALL_BUTTONS[i].getElementsByTagName('button')[0].innerHTML = this.keyObj[i].shifted_en;
               TEXTAREA.focus();
             }
-          } else {
+          } else if (langSwitch.lang === 'ru') {
             for (let i = 0; i < this.keyObj.length; i += 1) {
               ALL_BUTTONS[i].getElementsByTagName('button')[0].innerHTML = this.keyObj[i].shifted_ru;
               TEXTAREA.focus();
             }
+          } else if (langSwitch.lang === undefined) {
+            for (let i = 0; i < this.keyObj.length; i += 1) {
+              ALL_BUTTONS[i].getElementsByTagName('button')[0].innerHTML = this.keyObj[i].shifted_en;
+              TEXTAREA.focus();
+            }
           }
-        } else if (langSwitch.lang === 'en') {
-          for (let i = 0; i < this.keyObj.length; i += 1) {
-            ALL_BUTTONS[i].getElementsByTagName('button')[0].innerHTML = this.keyObj[i].shifted_en;
-            TEXTAREA.focus();
+        } else if (capsOn === true) {
+          if (langSwitch.lang === 'en') {
+            for (let i = 0; i < this.keyObj.length; i += 1) {
+              ALL_BUTTONS[i].getElementsByTagName('button')[0].innerHTML = this.keyObj[i].shifted_en;
+              TEXTAREA.focus();
+            }
+            [...LETTER_BUTTON].forEach((item, index) => {
+              [...LETTER_BUTTON][index].getElementsByTagName('button')[0].innerText = [...LETTER_BUTTON][index].getElementsByTagName('button')[0].innerText.toLowerCase();
+            });
+          } else if (langSwitch.lang === 'ru') {
+            for (let i = 0; i < this.keyObj.length; i += 1) {
+              ALL_BUTTONS[i].getElementsByTagName('button')[0].innerHTML = this.keyObj[i].shifted_ru;
+              TEXTAREA.focus();
+            }
+            [...LETTER_BUTTON].forEach((item, index) => {
+              [...LETTER_BUTTON][index].getElementsByTagName('button')[0].innerText = [...LETTER_BUTTON][index].getElementsByTagName('button')[0].innerText.toLowerCase();
+            });
+          } else if (langSwitch.lang === undefined) {
+            for (let i = 0; i < this.keyObj.length; i += 1) {
+              ALL_BUTTONS[i].getElementsByTagName('button')[0].innerHTML = this.keyObj[i].shifted_en;
+              TEXTAREA.focus();
+            }
+            [...LETTER_BUTTON].forEach((item, index) => {
+              [...LETTER_BUTTON][index].getElementsByTagName('button')[0].innerText = [...LETTER_BUTTON][index].getElementsByTagName('button')[0].innerText.toLowerCase();
+            });
           }
-          [...LETTER_BUTTON].forEach((item, index) => {
-            [...LETTER_BUTTON][index].getElementsByTagName('button')[0].innerText = [...LETTER_BUTTON][index].getElementsByTagName('button')[0].innerText.toLowerCase();
-          });
-        } else {
-          for (let i = 0; i < this.keyObj.length; i += 1) {
-            ALL_BUTTONS[i].getElementsByTagName('button')[0].innerHTML = this.keyObj[i].shifted_ru;
-            TEXTAREA.focus();
-          }
-          [...LETTER_BUTTON].forEach((item, index) => {
-            [...LETTER_BUTTON][index].getElementsByTagName('button')[0].innerText = [...LETTER_BUTTON][index].getElementsByTagName('button')[0].innerText.toLowerCase();
-          });
         }
       }
 
@@ -781,28 +821,43 @@ class Keyboard {
                 ALL_BUTTONS[i].getElementsByTagName('button')[0].innerHTML = this.keyObj[i].en;
                 TEXTAREA.focus();
               }
-            } else {
+            } else if (langSwitch.lang === 'ru') {
               for (let i = 0; i < this.keyObj.length; i += 1) {
                 ALL_BUTTONS[i].getElementsByTagName('button')[0].innerHTML = this.keyObj[i].ru;
                 TEXTAREA.focus();
               }
+            } else if (langSwitch.lang === undefined) {
+              for (let i = 0; i < this.keyObj.length; i += 1) {
+                ALL_BUTTONS[i].getElementsByTagName('button')[0].innerHTML = this.keyObj[i].en;
+                TEXTAREA.focus();
+              }
             }
-          } else if (langSwitch.lang === 'en') {
-            for (let i = 0; i < this.keyObj.length; i += 1) {
-              ALL_BUTTONS[i].getElementsByTagName('button')[0].innerHTML = this.keyObj[i].en;
-              TEXTAREA.focus();
+          } else if (capsOn === true) {
+            if (langSwitch.lang === 'en') {
+              for (let i = 0; i < this.keyObj.length; i += 1) {
+                ALL_BUTTONS[i].getElementsByTagName('button')[0].innerHTML = this.keyObj[i].en;
+                TEXTAREA.focus();
+              }
+              [...LETTER_BUTTON].forEach((item, index) => {
+                [...LETTER_BUTTON][index].getElementsByTagName('button')[0].innerText = [...LETTER_BUTTON][index].getElementsByTagName('button')[0].innerText.toUpperCase();
+              });
+            } else if (langSwitch.lang === 'ru') {
+              for (let i = 0; i < this.keyObj.length; i += 1) {
+                ALL_BUTTONS[i].getElementsByTagName('button')[0].innerHTML = this.keyObj[i].ru;
+                TEXTAREA.focus();
+              }
+              [...LETTER_BUTTON].forEach((item, index) => {
+                [...LETTER_BUTTON][index].getElementsByTagName('button')[0].innerText = [...LETTER_BUTTON][index].getElementsByTagName('button')[0].innerText.toUpperCase();
+              });
+            } else if (langSwitch.lang === undefined) {
+              for (let i = 0; i < this.keyObj.length; i += 1) {
+                ALL_BUTTONS[i].getElementsByTagName('button')[0].innerHTML = this.keyObj[i].en;
+                TEXTAREA.focus();
+              }
+              [...LETTER_BUTTON].forEach((item, index) => {
+                [...LETTER_BUTTON][index].getElementsByTagName('button')[0].innerText = [...LETTER_BUTTON][index].getElementsByTagName('button')[0].innerText.toUpperCase();
+              });
             }
-            [...LETTER_BUTTON].forEach((item, index) => {
-              [...LETTER_BUTTON][index].getElementsByTagName('button')[0].innerText = [...LETTER_BUTTON][index].getElementsByTagName('button')[0].innerText.toUpperCase();
-            });
-          } else {
-            for (let i = 0; i < this.keyObj.length; i += 1) {
-              ALL_BUTTONS[i].getElementsByTagName('button')[0].innerHTML = this.keyObj[i].ru;
-              TEXTAREA.focus();
-            }
-            [...LETTER_BUTTON].forEach((item, index) => {
-              [...LETTER_BUTTON][index].getElementsByTagName('button')[0].innerText = [...LETTER_BUTTON][index].getElementsByTagName('button')[0].innerText.toUpperCase();
-            });
           }
         }
       });
@@ -828,8 +883,8 @@ class Keyboard {
       const start = TEXTAREA.selectionStart; // первое положение выделенного символа
       const end = TEXTAREA.selectionEnd; //  последнее положение выделенного символа
       const finalText = TEXTAREA.value.substring(0, start) + TEXTAREA.value.substring(start + 1);
-      TEXTAREA.value = finalText; 
-      TEXTAREA.focus(); 
+      TEXTAREA.value = finalText;
+      TEXTAREA.focus();
       TEXTAREA.selectionEnd = end;
     });
 
