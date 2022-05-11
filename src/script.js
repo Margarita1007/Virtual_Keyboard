@@ -625,7 +625,7 @@ class Keyboard {
 
     document.addEventListener('keydown', (event) => { // считывание букв в соответствии с языком
       let index;
-      if ((event.code.includes('Key') || event.code.includes('Arrow') || event.code === 'Backquote' || event.code === 'Comma' || event.code === 'Period' || event.code === 'Semicolon' || event.code === 'Quote')) {
+      if ((event.code.includes('Key') || event.code.includes('Arrow') || event.code.includes('lash') || event.code === 'Backquote' || event.code === 'Comma' || event.code === 'Period' || event.code === 'Semicolon' || event.code === 'Quote')) {
         event.preventDefault();
         for (let i = 0; i < this.keyObj.length; i += 1) {
           if (event.code === this.keyObj[i].code) {
@@ -633,7 +633,7 @@ class Keyboard {
             break;
           }
         }
-        insertText([...ALL_BUTTONS][index].getElementsByTagName('button')[0].innerHTML);
+        insertText([...ALL_BUTTONS][index].getElementsByTagName('button')[0].innerText);
       }
     });
 
